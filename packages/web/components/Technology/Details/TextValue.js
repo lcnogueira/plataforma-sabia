@@ -41,7 +41,7 @@ TextValue.defaultProps = {
 	boolean: false,
 };
 
-export const Container = styled.p`
+export const Container = styled.div`
 	${({ theme: { colors } }) => css`
 		font-size: 1.6rem;
 		line-height: 2.4rem;

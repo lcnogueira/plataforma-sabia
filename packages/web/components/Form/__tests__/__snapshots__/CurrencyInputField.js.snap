@@ -1,0 +1,651 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyInputField works as expected if required props are provided 1`] = `
+.c1 {
+  font-size: 1.4rem;
+  line-height: 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 > div.wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2 {
+  color: hsla(0,0%,40%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  padding: 1.2rem;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  color: hsla(0,0%,40%);
+  opacity: 1;
+}
+
+.c4::-webkit-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::-moz-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4:-ms-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c0 {
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.c0 button,
+.c0 a {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.c0 > label {
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+<div>
+  <form
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <label
+        class="c2"
+        for="price"
+      >
+        Preço
+      </label>
+      <div
+        class="c3"
+      >
+        <input
+          aria-label="Preço"
+          aria-required="true"
+          class="c4"
+          id="price"
+          inputmode="numeric"
+          name="price"
+          placeholder="R$"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`it does not render a value if the typed value is invalid  1`] = `
+.c1 {
+  font-size: 1.4rem;
+  line-height: 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 > div.wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2 {
+  color: hsla(0,0%,40%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  padding: 1.2rem;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  color: hsla(0,0%,40%);
+  opacity: 1;
+}
+
+.c4::-webkit-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::-moz-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4:-ms-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c0 {
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.c0 button,
+.c0 a {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.c0 > label {
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+<div>
+  <form
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <label
+        class="c2"
+        for="price"
+      >
+        Preço
+      </label>
+      <div
+        class="c3"
+      >
+        <input
+          aria-label="Preço"
+          aria-required="true"
+          class="c4"
+          id="price"
+          inputmode="numeric"
+          name="price"
+          placeholder="R$"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`it renders a value if the typed value is valid  1`] = `
+.c1 {
+  font-size: 1.4rem;
+  line-height: 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 > div.wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2 {
+  color: hsla(0,0%,40%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  padding: 1.2rem;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  color: hsla(0,0%,40%);
+  opacity: 1;
+}
+
+.c4::-webkit-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::-moz-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4:-ms-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c0 {
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.c0 button,
+.c0 a {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.c0 > label {
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+<div>
+  <form
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <label
+        class="c2"
+        for="price"
+      >
+        Preço
+      </label>
+      <div
+        class="c3"
+      >
+        <input
+          aria-label="Preço"
+          aria-required="true"
+          class="c4"
+          id="price"
+          inputmode="numeric"
+          name="price"
+          placeholder="R$"
+          type="text"
+          value="R$ 150"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`it renders the value correctly if the default value is provided 1`] = `
+.c1 {
+  font-size: 1.4rem;
+  line-height: 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 > div.wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2 {
+  color: hsla(0,0%,40%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  padding: 1.2rem;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  color: hsla(0,0%,40%);
+  opacity: 1;
+}
+
+.c4::-webkit-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::-moz-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4:-ms-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c0 {
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.c0 button,
+.c0 a {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.c0 > label {
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+<div>
+  <form
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      <label
+        class="c2"
+        for="price"
+      >
+        Preço
+      </label>
+      <div
+        class="c3"
+      >
+        <input
+          aria-label="Preço"
+          aria-required="true"
+          class="c4"
+          id="price"
+          inputmode="numeric"
+          name="price"
+          placeholder="R$"
+          type="text"
+          value="R$ 1.000,50"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`it shows validation error on submit if the value is invalid 1`] = `
+.c1 {
+  font-size: 1.4rem;
+  line-height: 14px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 > div.wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c1 > input {
+  border: 1px solid hsla(29,94%,62%);
+}
+
+.c1 > .react-select-container .react-select__control {
+  border-color: hsla(29,94%,62%);
+}
+
+.c2 {
+  color: hsla(0,0%,40%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.c5 {
+  color: hsla(4,85%,57%);
+  margin: 0 0 1rem 0;
+  display: inline-block;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c4 {
+  width: 100%;
+  height: 4.4rem;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+  padding: 1.2rem;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  color: hsla(0,0%,40%);
+  opacity: 1;
+}
+
+.c4::-webkit-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::-moz-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4:-ms-input-placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c4::placeholder {
+  color: hsla(0,0%,52%);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.c0 {
+  margin: 1rem auto;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+.c0 button,
+.c0 a {
+  padding-right: 3rem;
+  padding-left: 3rem;
+}
+
+.c0 > label {
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+<div>
+  <form
+    class="c0"
+    data-testid="form-currency-test"
+  >
+    <div
+      class="c1"
+    >
+      <label
+        class="c2"
+        for="price"
+      >
+        Preço
+      </label>
+      <div
+        class="c3"
+      >
+        <input
+          aria-label="Preço"
+          aria-required="true"
+          class="c4"
+          id="price"
+          inputmode="numeric"
+          name="price"
+          placeholder="R$"
+          type="text"
+          value=""
+        />
+      </div>
+      <span
+        class="c5"
+      >
+        error:requiredField
+      </span>
+    </div>
+  </form>
+</div>
+`;

@@ -1,50 +1,84 @@
-# Sabia API
+# Sabiá API
 
-## Como executar o servidor da API?
+## Table of Contents
 
-1. Crie um arquivo `.env`, baseando-se no arquivo `.env.example`;
-2. Crie um banco chamado `sabia` (mesmo nome da key `DB_DATABASE` dentro do arquivo `.env`);
-3. Execute as migrations para criar as tabelas no banco:
+- [Running the API Server](#running-the-api-server)
+- [Running the Tests](#running-the-tests)
+- [API Documentation](#api-documentation)
+- [Using Fake Values](#using-fake-values)
+- [Pushing the Data to Algolia](#pushing-the-data-to-algolia)
+- [Sending Emails](#sending-emails)
+- [Uploading Files](#uploading-files)
+- [Adonis Framework](#adonis-framework)
 
+## Running the API Server
+
+1. Rename the `.env.example` file to `.env` and update all of the environment variables correctly.
+2. Make sure you have a MySQL database server (feel free to use docker or whatever method you prefer) up and running and update the `DB_HOST`, `DB_PORT`, `DB_USER` and `DB_PASSWORD` environment variables.
+3. Install the dependencies: `npm install`.
+4. Run the migrations in order to create the tables:
 ```
 npm run migration:run
 ```
-
-4. Execute o seguinte comando para popular o banco com os dados iniciais:
-
+5. Fill the database with the default values:
 ```
 npm run seed:default
 ```
 
-5. Preencha `APP_KEY` dentro de .env
-6. Inicialize o servidor: `npm start`.
-7. O servidor estará disponível em: `http://127.0.0.1:3333`.
+**If you prefer, you can [use fake values](#using-fake-values) in order to fill your application database.**
 
-Obs.: para executar o **passo 3**, é necessário que as variáveis de ambiente dentro do arquivo `.env` (`DB_HOST`,`DB_PORT`, `DB_USER` e `DB_PASSWORD`) estejam corretas.
+6. Make sure the `APP_KEY` variable has been filled in the `.env` file (you can run `adonis key:generate` if you want).
+7. Start the server: `npm start` (`npm run dev` for develop mode).
+8. The API server will be available at `http://127.0.0.1:3333`.
 
-## Seeds
-Caso queira initializar seu banco com alguns dados de teste, execute o seguinte comando:
+## Running the Tests
 
+After updating the environment variables in the `.env.testing` file, run:
+```
+npm run test
+```
+
+If you want to take a look at the code coverage, run:
+
+```
+npm run coverage
+```
+
+**The API server will use `DB_USER` and `DB_PASSWORD` values set in the `.env` file in order to connect to the testing database server.**
+
+## API Documentation
+
+This project has been documented by using the [apiDoc](https://apidocjs.com/) library. Use the following script to generate the documentation:
+```
+npm run apidoc
+```
+After generating the documentation files, you can start the API server and visit `http://localhost:3333/apidoc` to see the documentation.
+
+## Using Fake Values
+
+**If you ran the default seed script before, you will receive an error when running the following script. Reset the database before running the script**
+
+You can fill the database with fake values for testing purposes:
+1. Set the [Algolia config](#pushing-the-data-to-algolia).
+2. Run the following script:
 ```
 npm run seed
 ```
-Obs.: Antes de executar esse comando é necessário configurar o Algolia, pois o seeder: `TechnologySeeder` vai retornar um erro.
 
-## Algolia
+## Pushing the Data to Algolia
 
-Para integrar com o algolia, crie uma conta no [Algolia](https://www.algolia.) (existe opção de conta gratuita) e configure o a Aplication ID e Admin API Key nas variáveis `ALGOLIA_APP_ID` e `ALGOLIA_ADMIN_KEY` respectivamente.
+In order to use algolia, you should create an account on the [Algolia website](https://www.algolia) (there is a free account option) and set the `ALGOLIA_APP_ID` (Application ID) and `ALGOLIA_ADMIN_KEY` (Admin API) variables.
 
-Por padrão o nome do index é `serchable_data` mas é possível alterar mudando a variável `ALGOLIA_INDEX_NAME`.
+The algolia index name is `searchable_data` by default, but you can replace it by setting a new `ALGOLIA_INDEX_NAME` variable value.
 
-Para indexar todos os dados no Algolia use o seguinte comand:
-
+Before running the API server, you should push all of the database data to algolia by running the following command:
 ```
 npm run algolia:index
 ```
 
-## Transaction Emails
+## Sending Emails
 
-Para o envio de emails transacionais configure as credencias SMTP através das seguintes variáveis de ambiente:
+In order to send emails, you should update the SMTP information by setting the following environment variables:
 
 ```
 SMTP_PORT=
@@ -54,78 +88,20 @@ MAIL_PASSWORD=
 MAIL_FROM=noreply@plataformasabia.com.br
 ```
 
-Qualquer serviço de email com suporte a SMTP funcionará. Alternativamente você pode criar uma conta gratuita no mailgun.com e usar as credenciais SMTP que ele fornece.
+You can be free to use any email service that supports SMTP protocol (e.g.: [sendgrid](https://sendgrid.com/), [mailgun](https://www.mailgun.com/) or even [gmail](https://www.google.com/intl/pt/gmail/about/#)).
 
-## Uploads
+## Uploading Files
 
-Para o upload é necessário criar a seguinte variável de ambiente:
-
-```
-UPLOADS_PATH=
-```
-Ex. UPLOADS_PATH=resources/uploads
-
-Para os testes é necessário criar a mesma variável dentro de `.env.testing` com outro diretório. 
-
-Ex. UPLOADS_PATH=resources/uploads-testing
-
-## Testes
-
-Para executar os testes crie um banco chamado `sabia-testing` e execute:
-
-```
-npm run test
+You should update the `UPLOADS_PATH` environment variable to be able to upload files:
+```shell
+UPLOADS_PATH=resources/uploads
 ```
 
-Caso queira verificar o code coverage execute:
-
+For running the tests, you should set the same environment variable (with a differente value) in the `.env.testing` file:
 ```
-npm run coverage
-```
-
-Obs.: para se conectar ao banco `sabia-testing`, o servidor utilizará os valores de usuário (`DB_USER`) e senha (`DB_PASSWORD`) definidos no arquivo `.env`.
-
-## Documentação da API
-
-Esse projeto é documentado usando o biblioteca [apiDoc](https://apidocjs.com/)
-
-```
-npm run apidoc
-```
-Ao iniciar a api com `npm start`, a documentação estará discponível em: http://localhost:3333/apidoc/
-
-## Framework Adonis
-
-Esse projeto foi inicializado utilizando o [Framework Adonis](https://adonisjs.com/)
-
-## Opcionalmente pode-se instalar a CLI do Adonis:
-
-```
-npm i --global @adonisjs/cli
+UPLOADS_PATH=resources/uploads-testing
 ```
 
-## Comandos úteis que podem ser usados
+## Adonis Framework
 
-### 1. Executar as migrations para criar as tabelas no banco:
-
-```
-adonis migration:run
-```
-
-### 2. Gerar uma APP_KEY no .env
-
-```
-adonis key:generate
-```
-
-### 3. Inicializar o servidor:
-
-```
-adonis serve --dev
-```
-
-### 4. Para acessar a ajuda da CLI basta executar:
-
-```
-adonis --help
-```
+This project was bootstrapped by using the [Adonis Framework](https://adonisjs.com/docs/4.1/installation).

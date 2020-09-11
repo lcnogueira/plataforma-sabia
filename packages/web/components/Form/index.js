@@ -4,6 +4,7 @@ export { default as TextField } from './TextField';
 export { default as SelectField } from './SelectField';
 export { default as CheckBoxField } from './CheckBoxField';
 export { default as MaskedInputField } from './MaskedInputField';
+export { default as CurrencyInputField } from './CurrencyInputField';
 export { default as Watcher } from './Watcher';
 export { default as InputHiddenField } from './InputHiddenField';
 export { default as Repeater } from './Repeater';

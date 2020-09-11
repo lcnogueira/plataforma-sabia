@@ -1,10 +1,15 @@
-# Sabia Admin
+# Sabiá Admin
 
-## Como executar a parte administrativa da plataforma?
+- [Running the Admin Server](#running-the-admin-server)
+- [React Admin](#react-admin)
 
-1. Inicialize o servidor: `npm start`.
-2. O serviço estará disponível em: `http://localhost:3000`.
+## Running the Admin Server
 
-## Create React App
+1. Rename the `.env.example` to `.env` and replace the variables values.
+2. Install the dependencies: `npm install`.
+3. Start the server: `npm start`.
+2. The service will be available at: `http://localhost:3000`.
 
-Esse projeto foi inicializado utilizando [Create React App](https://github.com/facebook/create-react-app).
+## React Admin
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses the [React Admin Framework](https://marmelab.com/react-admin/Readme.html) for building the application.

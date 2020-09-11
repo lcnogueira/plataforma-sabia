@@ -1,32 +1,38 @@
-# Sabia Website
+# Sabiá Website
 
-## Como executar o website da plataforma?
+## Table of Contents
 
-1. Crie um arquivo `.env`, baseando-se no arquivo `.env.example`;
-2. Inicialize a api;
-3. Inicialize o servidor: `npm run dev`.
-4. O serviço estará disponível em: `http://localhost:8000`.
+- [Running the Web Server](#running-the-web-server)
+- [Running the Tests](#running-the-tests)
+  - [Unit Tests](#unit-tests)
+  - [E2E Tests](#e2e-tests)
+- [Running Storybook](#running-storybook)
+- [Create Next App](#create-react-app)
 
-## Storybook
+## Running the Web Server
 
-Execute `npm run storybook` para executar o storybook.
+1. Rename the `.env.example` to `.env` and replace the variables values.
+2. Make sure you have started the [API server](../api/README.md).
+3. Install the dependencies: `npm run install`.
+4. Start the server: `npm run dev` (`npm run start` for production mode).
+5. The service will be available at: `http://localhost:8000`.
 
-## Visual Regression Testing
+## Running the Tests
 
-Execute `npm run jest:visual` com o servidor to storybook aberto para rodar os testes de regressão visual.
+### Unit Tests
 
-Caso tenha introduzido uma mudança nos componentes da aplicação e estas sejam planejadas, atualize as imagens de referência com seguinte comand:
+The web project includes unit and snapshot tests. In order to run the unit tests, run `npm run jest`. This script will run the tests and generate the code coverage.
 
-```
-npm run jest:visual:update
-```
+You can run `npm run jest:watch` to watch files for changes and rerun tests related to changed files or if you want to update the snapshot files.
 
-Por conveniência há também o seguinte comando que inicializa o storybook e roda os testes
+### E2E Tests
 
-```
-npm run test:visual
-```
+This project also includes E2E Tests. Take a look at the [main README file](../../README.md##e2e-tests) to learn how to achieve it.
+
+## Running Storybook
+
+Run `npm run storybook` to have storybook setup locally. The server will be available at `http://localhost:9009`.
 
 ## Create Next App
 
-Esse projeto foi inicializado utilizando o [Create Next App](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+This project was bootstrapped with [Create Next App](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).

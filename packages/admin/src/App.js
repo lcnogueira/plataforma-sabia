@@ -2,8 +2,10 @@ import React from 'react';
 import { Admin, Resource } from 'react-admin';
 import authProvider from './providers/authProvider';
 import dataProvider from './providers/dataProvider';
+import i18nProvider from './providers/i18nProvider';
 
 import { LoginPage } from './components/Auth';
+import Layout from './components/Layout';
 import routes from './routes';
 
 import { TechnologiesList, TechnologiesCreate, TechnologiesEdit } from './pages/technologies';
@@ -19,6 +21,8 @@ const App = () => {
 			loginPage={LoginPage}
 			authProvider={authProvider}
 			dataProvider={dataProvider}
+			i18nProvider={i18nProvider}
+			layout={Layout}
 			customRoutes={routes}
 		>
 			<Resource

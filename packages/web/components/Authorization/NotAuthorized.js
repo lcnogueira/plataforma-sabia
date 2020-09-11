@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const NotAuthorized = () => {
+const NotAuthorized = ({ size }) => {
 	const { t } = useTranslation(['error']);
 
 	return (
-		<Container data-testid="notAuthorized">
+		<Container size={size} data-testid="notAuthorized">
 			<h1>{t('error:notAuthorized')}</h1>
 		</Container>
 	);
@@ -18,15 +19,20 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	width: 100%;
-	height: 100%;
-	padding: 5rem 0;
 
 	h1 {
 		color: ${({ theme }) => theme.colors.darkGray};
-		font-size: 3.6rem;
-		margin: 1.5rem auto;
+		font-size: ${({ size }) => size || 3.6}rem;
+		margin: auto;
 	}
 `;
+
+NotAuthorized.propTypes = {
+	size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
+
+NotAuthorized.defaultProps = {
+	size: null,
+};
 
 export default NotAuthorized;

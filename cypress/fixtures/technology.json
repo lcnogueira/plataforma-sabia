@@ -87,12 +87,12 @@
     },
     "users": [
       {
-        "id": 11,
+        "id": 12,
         "full_name": "FirstName LastName",
-        "email": "sabiatestinge2e@gmail.com",
+        "email": "sabiatesting@gmail.com",
         "phone_number": null,
         "lattes_id": null,
-        "status": "verified"
+        "status": "pending"
       }
     ]
   },
@@ -104,8 +104,44 @@
     },
     {
       "id": 2,
-      "filename": "image-1.png",
-      "url": "http://127.0.0.1:3333/uploads/technologies/image-1.png"
+      "filename": "image-1.pdf",
+      "url": "http://127.0.0.1:3333/uploads/technologies/image-1.pdf"
     }
-  ]
+  ],
+  "reviews": [
+		{
+			"id": 2,
+			"user_id": 3,
+			"technology_id": 1,
+			"content": "Foduc ajen bicosho oze ke mahse.",
+			"rating": 2,
+			"positive": ["Reur ruun ompu.", "Omlava daobiri tofge."],
+			"negative": ["Pezdo votoz vacamsih.", "Afofes ladibjes fejro hicbog."],
+			"created_at": "2020-08-27 14:48:39",
+			"updated_at": "2020-08-27 14:43:39",
+			"user": {
+				"id": 3,
+				"email": "awmefur@onufaip.gw",
+				"status": "pending",
+				"first_name": "f7auPLMd[5Mv",
+				"last_name": "5rYs6j(q",
+				"company": "Wgh%Xyc9w#jF",
+				"zipcode": "26251",
+				"cpf": "29179319655",
+				"birth_date": "2097-09-09 12:37:43.255",
+				"phone_number": "17331688177",
+				"lattes_id": "04784609672",
+				"address": "w!39E",
+				"address2": "KKmmcpvbjRqX3J",
+				"district": "^E8K1",
+				"city": "4BimCM6XL(R[cJy7vG*",
+				"state": "m@Cd)b(T7YyppGQ^7",
+				"country": "x^l23WWSUJVfwf",
+				"role_id": 1,
+				"created_at": "2020-08-27 14:43:29",
+				"updated_at": "2020-08-27 14:43:29",
+				"full_name": "f7auPLMd[5Mv 5rYs6j(q"
+			}
+		}
+	]
 }

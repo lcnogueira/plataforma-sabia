@@ -34,7 +34,7 @@ test('it shows the funding fields when selecting funding as required', async () 
 		</Form>,
 	);
 
-	const label = screen.getByLabelText('Não');
+	const label = screen.getByLabelText('common:no');
 
 	fireEvent.click(label);
 

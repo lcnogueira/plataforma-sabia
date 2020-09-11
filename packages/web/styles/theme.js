@@ -26,6 +26,7 @@ const theme = {
 	// rem
 	sizes: {
 		smallIcon: 1.5,
+		mediumIcon: 2,
 		largeIcon: 2.5,
 		defaultIcon: 3,
 		bigIcon: 4,

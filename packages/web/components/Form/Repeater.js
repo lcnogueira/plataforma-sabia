@@ -22,6 +22,11 @@ const RepeaterBody = styled.div`
 	margin-top: 2rem;
 `;
 
+const TitleHelpWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
 const Repeater = ({
 	childsComponent,
 	endComponent,
@@ -49,8 +54,10 @@ const Repeater = ({
 	return (
 		<Wrapper withBorder={withBorder}>
 			<Row>
-				{title ? <h3>{title}</h3> : null}
-				{help && <Help id={name} HelpComponent={help} />}
+				<TitleHelpWrapper>
+					{title ? <h3>{title}</h3> : null}
+					{help && <Help id={name} HelpComponent={help} />}
+				</TitleHelpWrapper>
 			</Row>
 			<RepeaterBody>
 				{fields.map((item, index) => (

@@ -129,8 +129,19 @@ exports[`it decreases the number of rows when clicking on remove button 1`] = `
   margin-bottom: 3rem;
 }
 
-.c15 {
+.c16 {
   margin-top: 2rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c0 {
@@ -152,7 +163,7 @@ exports[`it decreases the number of rows when clicking on remove button 1`] = `
   font-size: 1.7rem;
 }
 
-.c16 {
+.c17 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -182,7 +193,7 @@ exports[`it decreases the number of rows when clicking on remove button 1`] = `
   left: 5px;
 }
 
-.c16:hover {
+.c17:hover {
   opacity: 0.8;
 }
 
@@ -620,12 +631,16 @@ exports[`it decreases the number of rows when clicking on remove button 1`] = `
       >
         <div
           class="c7"
-        />
+        >
+          <div
+            class="c15"
+          />
+        </div>
         <div
-          class="c15"
+          class="c16"
         />
         <button
-          class="c16"
+          class="c17"
           color="hsla(0, 0%, 100%)"
           name="technologyResponsibles.users_add_button"
           title=""
@@ -771,8 +786,19 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
   margin-bottom: 3rem;
 }
 
-.c15 {
+.c16 {
   margin-top: 2rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c0 {
@@ -794,7 +820,7 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
   font-size: 1.7rem;
 }
 
-.c17 {
+.c18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -824,11 +850,11 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
   left: 5px;
 }
 
-.c17:hover {
+.c18:hover {
   opacity: 0.8;
 }
 
-.c16 {
+.c17 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -858,7 +884,7 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
   left: 5px;
 }
 
-.c16:hover {
+.c17:hover {
   opacity: 0.8;
 }
 
@@ -1296,9 +1322,13 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
       >
         <div
           class="c7"
-        />
+        >
+          <div
+            class="c15"
+          />
+        </div>
         <div
-          class="c15"
+          class="c16"
         >
           <div
             class="c2"
@@ -1417,7 +1447,7 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
               class="c13"
             >
               <button
-                class="c16"
+                class="c17"
                 color="hsla(0, 0%, 100%)"
                 name=""
                 title=""
@@ -1431,7 +1461,7 @@ exports[`it increases the number of rows when clicking on add button 1`] = `
           </div>
         </div>
         <button
-          class="c17"
+          class="c18"
           color="hsla(0, 0%, 100%)"
           name="technologyResponsibles.users_add_button"
           title=""
@@ -1576,8 +1606,19 @@ exports[`it renders the form with 2 rows 1`] = `
   margin-bottom: 3rem;
 }
 
-.c15 {
+.c16 {
   margin-top: 2rem;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c0 {
@@ -1599,7 +1640,7 @@ exports[`it renders the form with 2 rows 1`] = `
   font-size: 1.7rem;
 }
 
-.c16 {
+.c17 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1629,7 +1670,7 @@ exports[`it renders the form with 2 rows 1`] = `
   left: 5px;
 }
 
-.c16:hover {
+.c17:hover {
   opacity: 0.8;
 }
 
@@ -2067,12 +2108,16 @@ exports[`it renders the form with 2 rows 1`] = `
       >
         <div
           class="c7"
-        />
+        >
+          <div
+            class="c15"
+          />
+        </div>
         <div
-          class="c15"
+          class="c16"
         />
         <button
-          class="c16"
+          class="c17"
           color="hsla(0, 0%, 100%)"
           name="technologyResponsibles.users_add_button"
           title=""

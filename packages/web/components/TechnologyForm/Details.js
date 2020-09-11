@@ -50,7 +50,12 @@ const Details = ({ form }) => {
 					name="application_examples"
 					label="Exemplos de Aplicação"
 					placeholder="Descreva aqui exemplos de aplicação da sua tecnologia"
-					help={<p>Help Text</p>}
+					help={
+						<p>
+							Descreva de forma sucinta alguns exemplos
+							<br /> de aplicação da sua tecnologia.
+						</p>
+					}
 				/>
 				<InputField
 					form={form}
@@ -61,7 +66,7 @@ const Details = ({ form }) => {
 					help={
 						<p>
 							Quanto tempo demora para a instalação da
-							<br /> tecnologia? informe o tempo em dias
+							<br /> tecnologia? Informe o tempo em dias
 						</p>
 					}
 				/>

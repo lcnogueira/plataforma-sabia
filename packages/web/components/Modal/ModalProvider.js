@@ -55,7 +55,7 @@ export const ModalProvider = ({ children }) => {
 		<ModalContext.Provider value={{ state, openModal, closeModal }}>
 			{ModalComponent && (
 				<ModalOverlay>
-					<Modal>
+					<Modal data-testid="modal">
 						<ModalCloseIcon onClick={() => closeModal()}>
 							<AiFillCloseCircle color={state.props.closerColor} />
 						</ModalCloseIcon>

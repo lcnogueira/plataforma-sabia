@@ -105,7 +105,7 @@ class Technology extends Model {
 	}
 
 	reviews() {
-		return this.hasMany('App/Models/TechnologyReview');
+		return this.hasMany('App/Models/TechnologyReview').with('user');
 	}
 
 	technologyCosts() {

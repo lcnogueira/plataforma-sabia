@@ -4,7 +4,7 @@
   "scripts": {
     "start:ci": "lerna run start --parallel --no-bail",
     "start": "lerna run dev --parallel --no-bail",
-    "bootstrap": "lerna bootstrap",
+    "postinstall": "lerna bootstrap",
     "lint": "eslint .",
     "test": "(cd packages/api && npm run test) && (cd packages/web && npm run test)",
     "coverage": "(cd packages/api && npm run coverage) && (cd packages/web && npm run jest)",

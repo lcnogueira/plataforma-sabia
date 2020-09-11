@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -56,11 +57,11 @@ export const Actions = styled.div`
  *
  * @returns {React.Element}
  */
-export const Form = ({ onSubmit, children, defaultValues }) => {
+export const Form = ({ onSubmit, children, defaultValues, ...rest }) => {
 	const methods = useForm({ defaultValues });
 
 	return (
-		<StyledForm onSubmit={methods.handleSubmit((data) => onSubmit(data, methods))}>
+		<StyledForm onSubmit={methods.handleSubmit((data) => onSubmit(data, methods))} {...rest}>
 			{React.Children.map(children, (child) => {
 				return typeof child?.type === 'function'
 					? React.cloneElement(child, {
@@ -77,11 +78,13 @@ Form.propTypes = {
 	children: PropTypes.node.isRequired,
 	onSubmit: PropTypes.func,
 	defaultValues: PropTypes.shape({}),
+	testId: PropTypes.string,
 };
 
 Form.defaultProps = {
 	onSubmit: () => {},
 	defaultValues: {},
+	testId: '',
 };
 
 export default Form;

@@ -140,7 +140,7 @@ const TechnologyFormPage = ({ taxonomies, technology, initialStep }) => {
 				setCurrentStep(nextStep);
 				window.scrollTo({ top: 0 });
 			} else {
-				toast.info('Você será redicionado para as suas tecnologias', {
+				toast.info('Você será redirecionado para as suas tecnologias', {
 					closeOnClick: false,
 					onClose: async () => {
 						await router.push('/user/my-account/technologies');
@@ -217,7 +217,7 @@ TechnologyFormPage.getInitialProps = async ({ query, res, user }) => {
 		technology.technologyCosts = await getTechnologyCosts(query.id, {
 			normalize: true,
 		});
-		technology.attachments = await getAttachments(query.id);
+		technology.attachments = await getAttachments(query.id, { normalize: true });
 		technology.rawTerms = await getTechnologyTerms(query.id);
 	}
 

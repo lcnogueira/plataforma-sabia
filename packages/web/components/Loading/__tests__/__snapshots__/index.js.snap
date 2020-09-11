@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component renders another variants 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > div {
+  padding: 1rem;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <div
+      class="css-0"
+    >
+      <div
+        class="css-1uv12al"
+      />
+      <div
+        class="css-a00mw7"
+      />
+      <div
+        class="css-xp33ak"
+      />
+      <div
+        class="css-11jye0"
+      />
+      <div
+        class="css-1remiyp"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Loading component renders loading or children correctly 1`] = `
+<div>
+  <h1>
+    hi
+  </h1>
+</div>
+`;
+
+exports[`Loading component renders loading or children correctly 2`] = `
+<div>
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > div {
+  padding: 1rem;
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class="css-0"
+    >
+      <div
+        class="css-q6dswj"
+      />
+      <div
+        class="css-1dcll36"
+      />
+      <div
+        class="css-1l582lg"
+      />
+      <div
+        class="css-phvgz1"
+      />
+      <div
+        class="css-1un1iog"
+      />
+    </div>
+  </div>
+</div>
+`;

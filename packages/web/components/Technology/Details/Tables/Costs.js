@@ -11,10 +11,35 @@ const Costs = ({ title, data, totalColor }) => {
 		isEmpty = true;
 	}
 
+	const typesValues = [
+		{
+			value: 'service',
+			label: 'Serviço',
+		},
+		{
+			value: 'raw_input',
+			label: 'Insumo',
+		},
+		{
+			value: 'equipment',
+			label: 'Equipamento',
+		},
+		{
+			value: 'others',
+			label: 'Outro',
+		},
+	];
+
+	const getTypeLabelByValue = (value) => {
+		const typeLabel = typesValues.find((type) => type.value === value);
+
+		return typeLabel?.label || value;
+	};
+
 	const items = data?.map((item) => ({
 		id: item?.id,
 		description: item?.description,
-		type: item?.type,
+		type: getTypeLabelByValue(item?.type),
 		quantity: item?.quantity,
 		value: item?.value,
 		total: item?.quantity * item?.value,

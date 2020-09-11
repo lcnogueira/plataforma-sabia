@@ -61,7 +61,7 @@ class HandleParam {
 			taxonomies: ['id', 'taxonomy', 'created_at', 'updated_at'],
 			terms: ['id', 'term', 'slug', 'created_at', 'updated_at'],
 			permissions: ['id', 'permission', 'created_at', 'updated_at'],
-			technology_reviews: ['id', 'content', 'created_at', 'updated_at'],
+			technology_reviews: ['id', 'content', 'rating', 'created_at', 'updated_at'],
 			user_bookmarks: ['user_id', 'technology_id'],
 			technology_costs: ['id', 'funding_required', 'funding_type'],
 			costs: ['id', 'cost_type', 'description'],

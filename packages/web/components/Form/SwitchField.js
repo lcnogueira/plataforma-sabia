@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { InputLabel, Row } from './styles';
 import Help from './Help';
@@ -65,7 +66,13 @@ const SwitchLabel = styled.label`
 	}
 `;
 
+const SwitchLabelWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
 const SwitchField = ({ label, form, name, help, validation, ...checkboxProps }) => {
+	const { t } = useTranslation();
 	const { register, watch } = form;
 	const isChecked = watch(name);
 
@@ -80,11 +87,13 @@ const SwitchField = ({ label, form, name, help, validation, ...checkboxProps }) 
 				{...checkboxProps}
 			/>
 			<Row>
-				<SwitchLabel htmlFor={name} checked={isChecked}>
-					<p>{isChecked ? 'Sim' : 'Não'}</p>
-					<span />
-				</SwitchLabel>
-				{help && <Help id={name} HelpComponent={help} />}
+				<SwitchLabelWrapper>
+					<SwitchLabel htmlFor={name} checked={isChecked}>
+						<p>{isChecked ? t('common:yes') : t('common:no')}</p>
+						<span />
+					</SwitchLabel>
+					{help && <Help id={name} HelpComponent={help} />}
+				</SwitchLabelWrapper>
 			</Row>
 		</SwitchContainer>
 	);

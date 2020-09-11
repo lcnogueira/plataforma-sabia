@@ -4,6 +4,9 @@ module.exports = {
 			t(slug) {
 				return slug;
 			},
+			i18n: {
+				language: 'pt',
+			},
 		};
 	}),
 	withTranslation: () => (Component) => {

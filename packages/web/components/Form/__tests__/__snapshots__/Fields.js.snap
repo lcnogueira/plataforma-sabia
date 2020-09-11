@@ -18,15 +18,54 @@ exports[`CheckBoxField works as expected 1`] = `
 }
 
 .c2 {
-  width: 2.5rem;
-  height: 2.5rem;
   margin: 0rem;
-  margin: 0 0.5rem 0 0;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  width: 1px;
+  position: relative;
+  left: 2.5rem;
+}
+
+.c2:checked + span {
+  background: hsla(204,70%,53%) -19px top no-repeat;
+  border-color: hsla(204,70%,53%);
+}
+
+.c2:checked + span:before {
+  content: '';
+  position: absolute;
+  top: 16%;
+  right: 34%;
+  display: inline-block;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  height: 12px;
+  width: 7px;
+  border-bottom: 3px solid hsla(0,0%,100%);
+  border-right: 3px solid hsla(0,0%,100%);
+}
+
+.c4 {
+  width: 100%;
+  color: hsla(0,0%,40%);
+  cursor: pointer;
 }
 
 .c3 {
-  width: 100%;
-  color: hsla(0,0%,40%);
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1px 0px 0 0;
+  margin-right: 8px;
+  vertical-align: middle;
+  background: hsla(0,0%,100%);
+  border: 1px solid hsla(0,0%,80%);
+  border-radius: 0.2rem;
+  cursor: pointer;
 }
 
 .c0 {
@@ -63,8 +102,15 @@ exports[`CheckBoxField works as expected 1`] = `
         name="test-input"
         type="checkbox"
       />
-      <label
+      <span
+        aria-checked="false"
+        aria-label="Test Input"
+        aria-required="false"
         class="c3"
+        role="checkbox"
+      />
+      <label
+        class="c4"
         for="test-input"
       >
         Test Input
@@ -497,8 +543,17 @@ exports[`SelectField does not trigger validation if not required 1`] = `
 
 .c4 {
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   font-size: 1.4rem;
+}
+
+.c4 .react-select__control {
+  min-height: 4.4rem;
+  border-radius: 0.2rem;
+}
+
+.c4 .react-select__value-container > div {
+  color: hsla(0,0%,40%);
 }
 
 .c0 {
@@ -681,8 +736,17 @@ exports[`SelectField renders properly and on submit shows validation errors 1`] 
 
 .c4 {
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   font-size: 1.4rem;
+}
+
+.c4 .react-select__control {
+  min-height: 4.4rem;
+  border-radius: 0.2rem;
+}
+
+.c4 .react-select__value-container > div {
+  color: hsla(0,0%,40%);
 }
 
 .c0 {
@@ -941,7 +1005,7 @@ exports[`SwitchField works as expected 1`] = `
   transform: translateX(-100%);
 }
 
-.c5 {
+.c6 {
   width: 80px;
   height: 40px;
   margin-top: 0.5rem;
@@ -966,7 +1030,7 @@ exports[`SwitchField works as expected 1`] = `
   transition: color background-color 0.5s;
 }
 
-.c5 > p {
+.c6 > p {
   color: hsla(204,70%,53%);
   padding: 0.5em;
   font-size: 0.8em;
@@ -974,7 +1038,7 @@ exports[`SwitchField works as expected 1`] = `
   text-transform: uppercase;
 }
 
-.c5 > span {
+.c6 > span {
   content: '';
   position: absolute;
   top: 1px;
@@ -988,8 +1052,19 @@ exports[`SwitchField works as expected 1`] = `
   box-shadow: 0 0 2px 0 rgba(10,10,10,0.29);
 }
 
-.c5:active span {
+.c6:active span {
   width: calc(40px + 10px);
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .c0 {
@@ -1032,15 +1107,19 @@ exports[`SwitchField works as expected 1`] = `
       <div
         class="c4"
       >
-        <label
+        <div
           class="c5"
-          for="test-input"
         >
-          <p>
-            Não
-          </p>
-          <span />
-        </label>
+          <label
+            class="c6"
+            for="test-input"
+          >
+            <p>
+              common:no
+            </p>
+            <span />
+          </label>
+        </div>
       </div>
     </div>
   </form>

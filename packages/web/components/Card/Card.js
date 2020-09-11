@@ -65,7 +65,7 @@ const Card = ({
 						)}
 					</PrivateContainer>
 					<div data-testid="card-heart">
-						<Likes technology={id} count={likes} />
+						<Likes id={id} count={likes} />
 					</div>
 				</UpContent>
 				<Link href={dynamicTechnologyRoute} as={url}>

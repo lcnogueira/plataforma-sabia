@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const Section = ({ title, color = 'primary', hideWhenIsEmpty = true, children = [] }) => {
+const Section = ({ title, color, hideWhenIsEmpty, children = [] }) => {
 	const filtered = React.Children.toArray(children).filter(({ props }) => props?.value);
 
 	if (!filtered.length && hideWhenIsEmpty) {
@@ -20,14 +20,14 @@ const Section = ({ title, color = 'primary', hideWhenIsEmpty = true, children = 
 };
 
 export const Container = styled.div`
-	margin-left: 1rem;
+	margin: 0 1rem;
 	padding: 2rem 0;
 `;
 
 export const Title = styled.div`
 	${({ color, theme: { colors } }) => css`
 		border-bottom: 4px solid ${colors[color]};
-		width: calc(100% - 1rem);
+		width: 100%;
 		margin: 2rem 0;
 
 		&:first-child {
@@ -50,9 +50,14 @@ export const Title = styled.div`
 
 Section.propTypes = {
 	title: PropTypes.string.isRequired,
-	color: PropTypes.string.isRequired,
-	hideWhenIsEmpty: PropTypes.bool.isRequired,
+	color: PropTypes.string,
+	hideWhenIsEmpty: PropTypes.bool,
 	children: PropTypes.node.isRequired,
+};
+
+Section.defaultProps = {
+	color: 'primary',
+	hideWhenIsEmpty: true,
 };
 
 export default Section;

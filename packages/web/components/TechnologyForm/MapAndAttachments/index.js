@@ -52,12 +52,8 @@ const MapAndAttachments = ({ form, data }) => {
 	const [whereIsAlreadyImplementedInput, setWhereIsAlreadyImplementedInput] = useState('');
 	const [whoDevelop, setWhoDevelop] = useState([]);
 	const [whoDevelopInput, setWhoDevelopInput] = useState('');
-	const [previewedImgFiles, setPreviewedImgFiles] = useState(
-		attachments.filter((file) => file.url.indexOf('.pdf') === -1),
-	);
-	const [previewedPdfFiles, setPreviewedPdfFiles] = useState(
-		attachments.filter((file) => file.url.indexOf('.pdf') !== -1),
-	);
+	const [previewedImgFiles, setPreviewedImgFiles] = useState(attachments.images);
+	const [previewedPdfFiles, setPreviewedPdfFiles] = useState(attachments.documents);
 
 	useEffect(() => {
 		const whereIsAlreadyImplementedParsed = parseMetaObjectIntoKeyValue(
@@ -218,7 +214,7 @@ const MapAndAttachments = ({ form, data }) => {
 										<div className="autocomplete-dropdown-container">
 											{loading && (
 												<GoogleAddressSugestions>
-													Loading...
+													Carregando...
 												</GoogleAddressSugestions>
 											)}
 											<GoogleAddressSugestions>
@@ -341,7 +337,7 @@ const MapAndAttachments = ({ form, data }) => {
 										<div className="autocomplete-dropdown-container">
 											{loading && (
 												<GoogleAddressSugestions>
-													Loading...
+													Carregando...
 												</GoogleAddressSugestions>
 											)}
 											<GoogleAddressSugestions>
@@ -430,10 +426,10 @@ const MapAndAttachments = ({ form, data }) => {
 						)}
 					</Dropzone>
 					<UploadedImages>
-						{previewedImgFiles.map((element, index) => {
+						{previewedImgFiles?.map((element, index) => {
 							return (
-								<IconRow>
-									<Media key={element.src} src={element.url} />
+								<IconRow key={element.url}>
+									<Media key={element.url} src={element.url} />
 									<CircularButton
 										variant="remove"
 										height="3"
@@ -475,7 +471,7 @@ const MapAndAttachments = ({ form, data }) => {
 						)}
 					</Dropzone>
 					<UploadedDocuments>
-						{previewedPdfFiles.map((element, index) => {
+						{previewedPdfFiles?.map((element, index) => {
 							return (
 								<IconRow row>
 									<IconLink href={element.url}>

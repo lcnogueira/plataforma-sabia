@@ -3,7 +3,7 @@
 exports[`it render the Price component 1`] = `
 <div>
   <span>
-    R$ 5,000.00
+    R$ 5.000,00
   </span>
 </div>
 `;

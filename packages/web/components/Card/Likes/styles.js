@@ -89,7 +89,6 @@ export const Container = styled.div`
 		padding: 2rem;
 		margin: -2rem;
 		gap: 0.6rem;
-		z-index: 1;
 		cursor: pointer;
 
 		span {

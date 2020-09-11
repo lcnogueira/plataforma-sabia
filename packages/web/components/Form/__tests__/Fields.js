@@ -59,9 +59,9 @@ test('SwitchField works as expected', () => {
 	);
 
 	expect(container).toMatchSnapshot();
-	expect(container.querySelector('label[for=test-input]')).toHaveTextContent('Não');
+	expect(container.querySelector('label[for=test-input]')).toHaveTextContent('common:no');
 	fireEvent.click(container.querySelector('input'));
-	expect(container.querySelector('label[for=test-input]')).toHaveTextContent('Sim');
+	expect(container.querySelector('label[for=test-input]')).toHaveTextContent('common:yes');
 });
 
 test('CheckBoxField works as expected', () => {

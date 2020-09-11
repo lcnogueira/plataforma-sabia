@@ -3,14 +3,15 @@ import {
 	normalizeCosts,
 	normalizeTaxonomies,
 	normalizeTerms,
+	normalizeAttachments,
 	prepareCosts,
 	prepareTerms,
 } from '../utils/technology';
+
 /**
  * Fetches technologies.
  *
- * @param {string} params technology id
- * @param id
+ * @param {number} id Technology id
  * @returns {Array} The terms.
  */
 export const getTechnologyTerms = async (id) => {
@@ -156,7 +157,7 @@ export const getTechnologyCosts = async (id, options = {}) => {
 /**
  * Updates technology costs.
  *
- * @param {number} id The id of the tecnology to update
+ * @param {number} id The id of the technology to update
  * @param {object} data The technology coss data.
  * @param {object} options Optional params.
  * @param {boolean} options.normalize Whether to normalize data to match the shape expected by the technology form.
@@ -188,7 +189,7 @@ export const updateTechnologyCosts = async (id, data, options = {}) => {
 /**
  * Updates technology responsibles.
  *
- * @param {number} id The id of the tecnology to update
+ * @param {number} id The id of the technology to update
  * @param {object} data The technology responsibles data.
  * @returns {object} The updated technology responsibles
  */
@@ -209,11 +210,11 @@ export const updateTechnologyResponsibles = async (id, data) => {
 /**
  * fetch technology attachments.
  *
- * @param object_id
  * @param {number} id The id of the tecnology to fetch the attachments
+ * @param {object} options Optional params.
  * @returns {Array} The updated technology responsibles
  */
-export const getAttachments = async (id) => {
+export const getAttachments = async (id, options = {}) => {
 	if (!id) {
 		return [];
 	}
@@ -222,6 +223,34 @@ export const getAttachments = async (id) => {
 		object: 'technologies',
 		object_id: id,
 	});
+
+	if (response.status !== 200) {
+		return [];
+	}
+
+	if (options.normalize && response.data) {
+		response.data = normalizeAttachments(response.data);
+	}
+
+	return response.data;
+};
+
+/**
+ * Fetch technology reviews.
+ *
+ * @param {string|number} id Technology id.
+ * @param {object} params Optional params.
+ * @param {('created_at'|'rating')} [params.orderBy='created_at'] Order items by a column.
+ * @param {('ASC'|'DESC')} [params.order='ASC'] Order.
+ *
+ * @returns {Array} The current technology reviews
+ */
+export const getReviews = async (id, params = { orderBy: 'created_at', order: 'DESC' }) => {
+	if (!id) {
+		return [];
+	}
+
+	const response = await apiGet(`technologies/${id}/reviews`, params);
 
 	if (response.status !== 200) {
 		return [];

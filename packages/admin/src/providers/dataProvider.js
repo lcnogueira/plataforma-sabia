@@ -5,8 +5,10 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const httpClient = (url, options = {}) => {
 	const token = localStorage.getItem('token');
+	const locale = localStorage.getItem('locale');
 	const headers = new Headers({
 		'Content-Type': 'application/json',
+		'Accept-Language': locale,
 		Authorization: token,
 	});
 

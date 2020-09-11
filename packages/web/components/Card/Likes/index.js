@@ -6,7 +6,7 @@ import { useAuth, useModal, useTheme } from '../../../hooks';
 import { handleBookmark } from '../../../services';
 import { Container } from './styles';
 
-const Likes = ({ technology, count }) => {
+const Likes = ({ id, count }) => {
 	const [filled, setFilled] = useState(null);
 	const [currentLikes, setCurrentLikes] = useState(count);
 	const [animation, setAnimation] = useState(null);
@@ -20,10 +20,10 @@ const Likes = ({ technology, count }) => {
 	const animationTimeInMilliseconds = 1500;
 
 	useEffect(() => {
-		const isLiked = user?.bookmarks?.some((bookmark) => bookmark === technology);
+		const isLiked = user?.bookmarks?.some((bookmark) => bookmark === id);
 
 		setFilled(isLiked);
-	}, [technology, user]);
+	}, [id, user]);
 
 	async function handleLike() {
 		if (!userIsLoggedIn) {
@@ -51,7 +51,7 @@ const Likes = ({ technology, count }) => {
 
 		return handleBookmark({
 			active: filled,
-			technologyId: technology,
+			technologyId: id,
 			userId: user?.id,
 		});
 	}
@@ -73,7 +73,7 @@ const Likes = ({ technology, count }) => {
 };
 
 Likes.propTypes = {
-	technology: PropTypes.number.isRequired,
+	id: PropTypes.number.isRequired,
 	count: PropTypes.number.isRequired,
 };
 

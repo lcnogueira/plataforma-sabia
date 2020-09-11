@@ -9,7 +9,7 @@ describe('Protected component', () => {
 	it('should return the login modal if user is not logged in', () => {
 		const childrenText = 'children';
 
-		const { container } = render(
+		const { container, queryByTestId } = render(
 			<Protected>
 				<h1>{childrenText}</h1>
 			</Protected>,
@@ -17,6 +17,7 @@ describe('Protected component', () => {
 
 		expect(container).toMatchSnapshot();
 		expect(container.querySelector('h1').textContent).not.toEqual(childrenText);
+		expect(queryByTestId('modal')).toBeTruthy();
 		expect(container.querySelector('form input[type=email]')).toBeTruthy();
 		expect(container.querySelector('form input[type=password]')).toBeTruthy();
 		expect(container.querySelector('form button[type=submit]')).toBeTruthy();
@@ -100,5 +101,51 @@ describe('Protected component', () => {
 		expect(container.querySelector('h1').textContent).not.toEqual(childrenText);
 		expect(Router.useRouter().push).toHaveBeenCalledWith(redirectTo);
 		expect(Router.useRouter().push).toHaveBeenCalledTimes(1);
+	});
+
+	it('should show an inline login when inline props was passed', () => {
+		jest.spyOn(useAuth, 'default').mockReturnValue({
+			user: {
+				email: null,
+			},
+		});
+
+		const childrenText = 'children';
+
+		const { container, queryByTestId } = render(
+			<Protected inline>
+				<h1>{childrenText}</h1>
+			</Protected>,
+		);
+
+		expect(container).toMatchSnapshot();
+		expect(queryByTestId('modal')).toBeNull();
+		expect(container.querySelector('form input[type=email]')).toBeTruthy();
+		expect(container.querySelector('form input[type=password]')).toBeTruthy();
+		expect(container.querySelector('form button[type=submit]')).toBeTruthy();
+	});
+
+	it('should return only the inline message when onlyUnauthorizedMessage is provided', () => {
+		const childrenText = 'children';
+
+		jest.spyOn(useAuth, 'default').mockReturnValue({
+			user: {
+				email: null,
+			},
+		});
+
+		const { container, queryByTestId } = render(
+			<Protected onlyUnauthorizedMessage>
+				<h1>{childrenText}</h1>
+			</Protected>,
+		);
+
+		expect(container).toMatchSnapshot();
+		expect(container.querySelector('h1').textContent).not.toEqual(childrenText);
+		expect(queryByTestId('modal')).not.toBeTruthy();
+		expect(queryByTestId('notAuthorized')).toBeTruthy();
+		expect(container.querySelector('form input[type=email]')).not.toBeTruthy();
+		expect(container.querySelector('form input[type=password]')).not.toBeTruthy();
+		expect(container.querySelector('form button[type=submit]')).not.toBeTruthy();
 	});
 });

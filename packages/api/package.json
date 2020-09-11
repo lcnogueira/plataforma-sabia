@@ -30,6 +30,7 @@
     "@adonisjs/antl": "^2.0.7",
     "@adonisjs/auth": "^3.0.7",
     "@adonisjs/bodyparser": "^2.0.5",
+    "@adonisjs/cli": "^4.0.12",
     "@adonisjs/cors": "^1.0.7",
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/framework": "^5.0.9",
