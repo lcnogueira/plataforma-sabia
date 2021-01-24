@@ -68,7 +68,7 @@ const techonologyFormSteps = [
 		label: 'Mapas e Anexos',
 		form: MapAndAttachments,
 		description:
-			'Etapa muito importante para conhecermos os locais que a tecnologia é desenvolvida, pode ser utilizada e onde ela já foi implantada. Essa busca é realizada no Google Maps, portanto, poderá procurar por empresas, instituições ou cidades. Em anexos você poderá informar fotos, links para vídeos no YouTube e documentos em PDF (cartilha, manual etc). Esses arquivos anexos não poderão ultrapassar 5MB de tamanho.',
+			'Etapa muito importante para conhecermos os locais que a tecnologia é desenvolvida, pode ser utilizada e onde ela já foi implantada. Essa busca é realizada no Google Maps, portanto, poderá procurar por empresas, instituições ou cidades. Em anexos você poderá informar fotos, links para vídeos no YouTube e documentos em PDF (cartilha, manual etc). Esses arquivos anexos não poderão ultrapassar 4MB de tamanho.',
 	},
 	{
 		slug: 'review',
