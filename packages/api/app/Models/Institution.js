@@ -54,6 +54,19 @@ class Institution extends Model {
 		}
 	}
 
+	static scopePopulateForAlgolia(query, id) {
+		if (id) {
+			query.where({ id });
+		}
+
+		query
+			.with('logo')
+			.withCount('technologies')
+			.withCount('services');
+
+		return query;
+	}
+
 	users() {
 		return this.hasMany('App/Models/User');
 	}

@@ -81,13 +81,7 @@ class AlgoliaIndex extends Command {
 		do {
 			page += 1;
 			const technologies = await Technology.query()
-				.available()
-				.with('terms.taxonomy')
-				.with('users.role')
-				.with('users.institution')
-				.with('thumbnail')
-				.with('keywords')
-				.with('technologyCosts.costs')
+				.populateForAlgolia()
 				.paginate(page);
 			const { pages } = technologies;
 			const { data } = technologies.toJSON();
@@ -125,8 +119,7 @@ class AlgoliaIndex extends Command {
 		do {
 			page += 1;
 			const services = await Service.query()
-				.with('keywords')
-				.with('user.institution')
+				.populateForAlgolia()
 				.paginate(page);
 			const { pages } = services;
 			const { data } = services.toJSON();
@@ -145,10 +138,7 @@ class AlgoliaIndex extends Command {
 		do {
 			page += 1;
 			const announcements = await Announcement.query()
-				.published()
-				.with('keywords')
-				.with('institution')
-				.with('targetAudiences')
+				.populateForAlgolia()
 				.paginate(page);
 			const { pages } = announcements;
 			const { data } = announcements.toJSON();
@@ -167,9 +157,7 @@ class AlgoliaIndex extends Command {
 		do {
 			page += 1;
 			const institutions = await Institution.query()
-				.with('logo')
-				.withCount('technologies')
-				.withCount('services')
+				.populateForAlgolia()
 				.paginate(page);
 			const { pages } = institutions;
 			const { data } = institutions.toJSON();

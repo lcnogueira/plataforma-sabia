@@ -92,6 +92,16 @@ class Service extends Model {
 	static scopeAvailable(query) {
 		return query.where({ active: true });
 	}
+
+	static scopePopulateForAlgolia(query, id) {
+		if (id) {
+			query.where({ id });
+		}
+
+		query.with('keywords').with('user.institution');
+
+		return query;
+	}
 }
 
 module.exports = Service;
