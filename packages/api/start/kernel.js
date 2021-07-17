@@ -11,6 +11,7 @@ const Server = use('Server');
 |
 */
 const globalMiddleware = [
+	'App/Middleware/CollectPerformanceMetric',
 	'Adonis/Middleware/BodyParser',
 	'App/Middleware/ConvertEmptyStringsToNull',
 	'App/Middleware/DecodeUriParams',

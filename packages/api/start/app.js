@@ -28,6 +28,7 @@ const providers = [
 	path.join(__dirname, '..', 'providers', 'AlgoliaProvider'),
 	path.join(__dirname, '..', 'providers', 'RequestProvider'),
 	path.join(__dirname, '..', 'providers', 'GoogleProvider'),
+	path.join(__dirname, '..', 'providers', 'PrometheusProvider'),
 ];
 
 /*
