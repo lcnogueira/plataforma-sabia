@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-	CheckboxGroupInput,
 	DateTimeInput,
 	ReferenceInput,
 	required,
@@ -10,7 +9,7 @@ import {
 	TextField,
 	TextInput,
 } from 'react-admin';
-import { ReferenceArrayInput, statuses } from '../../../components';
+import { statuses } from '../../../components';
 
 const AboutForm = ({ record, save, resource }) => {
 	record.role = record?.role_id;
@@ -54,10 +53,6 @@ const AboutForm = ({ record, save, resource }) => {
 			<ReferenceInput source="role" reference="roles" validate={[required()]} fullWidth>
 				<SelectInput optionText="role" />
 			</ReferenceInput>
-
-			<ReferenceArrayInput source="permissions" reference="permissions">
-				<CheckboxGroupInput optionText="description" />
-			</ReferenceArrayInput>
 		</SimpleForm>
 	);
 };

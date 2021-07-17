@@ -1,11 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { TabbedShowLayout, Tab, Error, Loading, useQuery } from 'react-admin';
-import Technologies from './Technologies';
-import Reviews from './Reviews';
+import React from 'react';
+import { Error, Loading, Tab, TabbedShowLayout, useQuery } from 'react-admin';
 import AboutForm from './AboutForm';
 import Bookmarks from './Bookmarks';
 import Institution from './Institution';
+import Permissions from './Permissions';
+import Reviews from './Reviews';
+import Technologies from './Technologies';
 import Uploads from './Uploads';
 
 const UsersForm = ({ record, resource, save, basePath }) => {
@@ -42,6 +43,9 @@ const UsersForm = ({ record, resource, save, basePath }) => {
 			</Tab>
 			<Tab label="labels.uploads" path="uploads">
 				<Uploads />
+			</Tab>
+			<Tab label="labels.permissions" path="permissions">
+				<Permissions save={save} />
 			</Tab>
 		</TabbedShowLayout>
 	);
