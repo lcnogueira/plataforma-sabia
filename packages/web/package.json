@@ -1,10 +1,10 @@
 {
   "name": "@sabia/web",
   "scripts": {
-    "dev": "cross-env NODE_ICU_DATA=node_modules/full-icu APP_ENV=development next dev -p 8000",
+    "dev": "cross-env NODE_ICU_DATA=node_modules/full-icu APP_ENV=development node server.js",
     "build": "cross-env NODE_ICU_DATA=node_modules/full-icu next build",
     "start:ci": "cross-env APP_ENV=testing NODE_ENV=production npm run build && APP_ENV=testing npm run start",
-    "start": "cross-env NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production next start -p 8000",
+    "start": "cross-env NODE_ICU_DATA=node_modules/full-icu NODE_ENV=production node server.js",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook",
     "jest": "cross-env APP_ENV=testing NODE_ICU_DATA=node_modules/full-icu jest --coverage --maxWorkers=50%",
@@ -23,6 +23,7 @@
     "algoliasearch": "^4.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-prom-bundle": "^6.3.6",
     "google-maps-react": "^2.0.6",
     "html-react-parser": "^0.13.0",
     "isomorphic-dompurify": "^0.3.0",
@@ -34,6 +35,7 @@
     "next-translate": "^1.0.6",
     "npm": "^6.14.8",
     "nprogress": "^0.2.0",
+    "prom-client": "^13.1.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^17.0.1",
