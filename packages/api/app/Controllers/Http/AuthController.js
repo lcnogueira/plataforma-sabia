@@ -28,7 +28,6 @@ class AuthController {
 			email: user.email,
 			subject: request.antl('message.auth.confirmAccountEmailSubject'),
 			template: 'emails.confirm-account',
-			user,
 			token,
 		};
 		Bull.add(SendMailJob.key, mailData, { attempts: 3 });
@@ -36,7 +35,7 @@ class AuthController {
 
 	async register({ request }) {
 		const { disclaimers } = request.only(['disclaimers']);
-		const data = request.only(['full_name', 'first_name', 'last_name', 'email', 'password']);
+		const data = request.only(['email', 'password']);
 
 		const user = await User.create(data);
 		await user.load('role');
@@ -49,7 +48,7 @@ class AuthController {
 		};
 	}
 
-	async confirmAccount({ request, response }) {
+	async confirmAccount({ auth, request, response }) {
 		const { email, token } = request.only(['email', 'token']);
 
 		const tokenObject = await Token.getTokenObjectFor(email, token, 'confirm-ac');
@@ -67,15 +66,7 @@ class AuthController {
 		user.status = 'verified';
 		await user.save();
 
-		const mailData = {
-			email: user.email,
-			subject: request.antl('message.auth.accountActivatedEmailSubject'),
-			template: 'emails.active-account',
-			user,
-		};
-		Bull.add(SendMailJob.key, mailData, { attempts: 3 });
-
-		return response.status(200).send({ success: true });
+		return auth.generate(user);
 	}
 
 	/**

@@ -3,6 +3,8 @@ const Role = use('App/Models/Role');
 const Permission = use('App/Models/Permission');
 const Token = use('App/Models/Token');
 const Institution = use('App/Models/Institution');
+const City = use('App/Models/City');
+const State = use('App/Models/State');
 const KnowledgeArea = use('App/Models/KnowledgeArea');
 const { errors, errorPayload, getTransaction } = require('../../Utils');
 // get only useful fields
@@ -21,8 +23,8 @@ const getFields = (request) =>
 		'address',
 		'address2',
 		'district',
-		'city',
-		'state',
+		'city_id',
+		'state_id',
 		'country',
 		'permissions',
 		'status',
@@ -57,7 +59,9 @@ class UserController {
 	 * POST users
 	 */
 	async store({ request }) {
-		const { permissions, institution_id, areas, ...data } = getFields(request);
+		const { permissions, institution_id, city_id, state_id, areas, ...data } = getFields(
+			request,
+		);
 
 		const user = await User.create(data);
 
@@ -69,7 +73,14 @@ class UserController {
 			const institutionInst = await Institution.findOrFail(institution_id);
 			await user.institution().associate(institutionInst);
 		}
-
+		if (city_id) {
+			const cityInst = await City.findOrFail(city_id);
+			await user.city().associate(cityInst);
+		}
+		if (state_id) {
+			const stateInst = await State.findOrFail(state_id);
+			await user.state().associate(stateInst);
+		}
 		if (areas) {
 			const areasCollection = await KnowledgeArea.query()
 				.whereIn('knowledge_area_id', areas)
@@ -97,7 +108,16 @@ class UserController {
 	 */
 	async update({ auth, params, request }) {
 		const { id } = params;
-		const { permissions, status, role, institution_id, areas, ...data } = getFields(request);
+		const {
+			permissions,
+			status,
+			role,
+			institution_id,
+			city_id,
+			state_id,
+			areas,
+			...data
+		} = getFields(request);
 		if (status) data.status = status;
 
 		const upUser = await User.findOrFail(id);
@@ -105,6 +125,14 @@ class UserController {
 		if (institution_id) {
 			const institutionInst = await Institution.findOrFail(institution_id);
 			await upUser.institution().associate(institutionInst);
+		}
+		if (city_id) {
+			const cityInst = await City.findOrFail(city_id);
+			await upUser.city().associate(cityInst);
+		}
+		if (state_id) {
+			const stateInst = await State.findOrFail(state_id);
+			await upUser.state().associate(stateInst);
 		}
 		if (areas) {
 			await upUser.areas().detach();

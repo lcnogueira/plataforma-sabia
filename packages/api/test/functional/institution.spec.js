@@ -43,7 +43,7 @@ test('GET /institutions/:id returns a institution by initials', async ({ client,
 });
 
 test('POST /institutions creates a new institution', async ({ client, assert }) => {
-	const user = await Factory.model('App/Models/User').create();
+	const { user } = await createUser({ append: { status: 'verified' } });
 	const institutionFactory = await Factory.model('App/Models/Institution').make();
 
 	const response = await client

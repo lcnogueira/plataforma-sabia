@@ -9,6 +9,7 @@ const Config = use('Config');
 const { ttl } = Config.get('app.token');
 
 trait('Test/ApiClient');
+trait('Auth/Client');
 trait('DatabaseTransactions');
 
 const disclaimers = Array.from(Array(30).keys());
@@ -190,6 +191,38 @@ test('/auth/register and /auth/login endpoints works together', async ({ client,
 	});
 
 	assert.exists(loginResponse.body.token);
+});
+
+test('/auth/register user register flow', async ({ client, assert }) => {
+	const { email, password, first_name, last_name } = userData;
+	// Register
+	const registerResponse = await client
+		.post('/auth/register')
+		.send({ email, password, disclaimers })
+		.end();
+
+	registerResponse.assertStatus(200);
+	const user = await User.findOrFail(registerResponse.body.id);
+
+	// Confirms account by token
+	const { token } = await user.generateToken('confirm-ac');
+	const confirmAcResponse = await client
+		.post('/auth/confirm-account')
+		.send({ email: user.email, token })
+		.end();
+	confirmAcResponse.assertStatus(200);
+	assert.exists(confirmAcResponse.body.token);
+
+	// Complete user register
+	const updateUserResponse = await client
+		.put(`users/${user.id}`)
+		.loginVia(user, 'jwt')
+		.send({ first_name, last_name })
+		.end();
+
+	updateUserResponse.assertStatus(200);
+	assert.equal(updateUserResponse.body.first_name, first_name);
+	assert.equal(updateUserResponse.body.last_name, last_name);
 });
 
 test('/auth/forgot-password', async ({ client, assert }) => {

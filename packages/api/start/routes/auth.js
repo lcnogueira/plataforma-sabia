@@ -6,28 +6,20 @@ const Route = use('Route');
 /**
  * @api {post} /auth/register Registers a new user
  * @apiGroup Auth
- * @apiParam {String} full_name Mandatory if first_name is not provided.
- * @apiParam {String} first_name Mandatory if full_name is not provided.
- * @apiParam {String} [last_name] Optional LastName.
  * @apiParam {String} email Mandatory User Email.
  * @apiParam {String} password Mandatory User Password.
  * @apiParam {Number[]} [disclaimers] Mandatory Disclaimers ID array.
  * @apiParamExample {json} Request sample:
  *{
- *    "first_name": "FirstName",
- *    "last_name": "LastName",
  *    "email": "user@testing.com",
  *    "password": "pass",
  *    "disclaimers": [1,2,3,4]
  *}
- * @apiSuccess {String} first_name User First Name
- * @apiSuccess {String} last_name User Last Name
  * @apiSuccess {String} email User Email
  * @apiSuccess {Date} created_at User Register date
  * @apiSuccess {Date} updated_at User Update date
  * @apiSuccess {Number} id User Id
  * @apiSuccess {Number} role_id User Role Id
- * @apiSuccess {String} full_name User Full Name
  * @apiSuccess {object} role User Role object
  * @apiSuccess {number} role.id User Role id
  * @apiSuccess {number} role.role User Role
@@ -38,14 +30,11 @@ const Route = use('Route');
  * @apiSuccessExample {json} Success
  *    HTTP/1.1 200 OK
  *    {
- *		"first_name": "FirstName",
- * 		"last_name": "LastName",
  * 		"email": "user@testing.com",
  * 		"created_at": "2020-07-31 15:39:02",
  * 		"updated_at": "2020-07-31 15:39:02",
  * 		"id": 1,
  * 		"role_id": 1,
- * 		"full_name": "FirstName LastName",
  *		 "role": {
  *			"id": 1,
  *			"role": "DEFAULT_USER",
@@ -76,7 +65,7 @@ const Route = use('Route');
  *    HTTP/1.1 500 Internal Server Error
  */
 Route.post('/auth/register', 'AuthController.register')
-	.validator('User')
+	.validator('Register')
 	.middleware(['disclaimerMiddleware:register']);
 
 /**

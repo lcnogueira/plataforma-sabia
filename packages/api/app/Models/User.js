@@ -24,8 +24,8 @@ const personal_data_required_fields = [
 	'zipcode',
 	'address',
 	'district',
-	'city',
-	'state',
+	'city_id',
+	'state_id',
 	'country',
 ];
 
@@ -134,7 +134,8 @@ class User extends Model {
 				const userField = this.toJSON()[field];
 
 				const allowedField =
-					userField && (userField?.length || Object.values(userField)?.length);
+					userField &&
+					(userField?.length || Object.values(userField)?.length || userField > 0);
 
 				return !allowedField ? field : null;
 			})
@@ -295,6 +296,14 @@ class User extends Model {
 
 	deviceTokens() {
 		return this.hasMany('App/Models/DeviceToken');
+	}
+
+	city() {
+		return this.belongsTo('App/Models/City');
+	}
+
+	state() {
+		return this.belongsTo('App/Models/State');
 	}
 
 	async generateToken(type) {

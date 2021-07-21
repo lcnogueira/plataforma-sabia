@@ -16,8 +16,8 @@ class User extends BaseValidator {
 			address: 'string',
 			address2: 'string',
 			district: 'string',
-			city: 'string',
-			state: 'string',
+			city_id: 'number|exists:cities,id',
+			state_id: 'number|exists:states,id',
 			country: 'string',
 			disclaimers: 'array', // required|
 			'disclaimers.*': 'number', // |exists:disclaimers,id

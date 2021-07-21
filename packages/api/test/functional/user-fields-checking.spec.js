@@ -15,12 +15,13 @@ test('POST /technologies checks user personal and organizational data before cre
 	client,
 }) => {
 	const { user: loggedUser } = await createUser({
-		append: { role: roles.RESEARCHER, address: null, city: null },
+		append: { role: roles.RESEARCHER, address: null },
 	});
 
 	await loggedUser.institution().dissociate();
 	await loggedUser.areas().detach();
-	const unCompletedFields = ['address', 'city', 'institution'];
+	await loggedUser.city().dissociate();
+	const unCompletedFields = ['address', 'city_id', 'institution'];
 
 	const technologyFactory = await Factory.model('App/Models/Technology').make();
 

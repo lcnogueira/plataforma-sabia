@@ -49,8 +49,6 @@ Factory.blueprint('App/Models/User', async (faker, i, data) => {
 		address: faker.string(),
 		address2: faker.string(),
 		district: faker.string(),
-		city: faker.string(),
-		state: faker.string(),
 		country: faker.string(),
 		role_id: 1,
 		...data,

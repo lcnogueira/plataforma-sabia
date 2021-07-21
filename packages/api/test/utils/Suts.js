@@ -6,6 +6,10 @@ const User = use('App/Models/User');
 const Disclaimer = use('App/Models/Disclaimer');
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const KnowledgeArea = use('App/Models/KnowledgeArea');
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const City = use('App/Models/City');
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+const State = use('App/Models/State');
 
 const createUser = async ({ append = {} } = {}) => {
 	const randomNumber = () => Math.floor(Math.random() * 1000);
@@ -15,6 +19,11 @@ const createUser = async ({ append = {} } = {}) => {
 	 */
 	const institution = await Factory.model('App/Models/Institution').create();
 
+	/**
+	 * City and State
+	 */
+	const city = await City.first();
+	const state = await State.first();
 	/**
 	 * User
 	 */
@@ -32,13 +41,16 @@ const createUser = async ({ append = {} } = {}) => {
 		address: 'Testing address, 99',
 		address2: 'Complement 99',
 		district: '99',
-		city: 'Test City',
-		state: 'TT',
 		country: 'Fictional Country',
 	};
 
 	const userToCreate = { ...defaultUser, ...append };
-	const user = await User.create({ ...userToCreate, institution_id: institution.id });
+	const user = await User.create({
+		...userToCreate,
+		institution_id: institution.id,
+		city_id: city.id,
+		state_id: state.id,
+	});
 	const userJson = { ...userToCreate, ...user.toJSON() };
 
 	/**
