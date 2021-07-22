@@ -1,6 +1,5 @@
 /* @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model');
-const Env = use('Env');
 const Helpers = use('Helpers');
 const fs = require('fs').promises;
 
@@ -13,15 +12,6 @@ class Upload extends Model {
 	static boot() {
 		super.boot();
 		this.addTrait('Params');
-	}
-
-	static get computed() {
-		return ['url'];
-	}
-
-	getUrl() {
-		const uploadPath = this.object ? `uploads/${this.object}` : 'uploads';
-		return `${Env.get('APP_URL')}/${uploadPath}/${this.filename}`;
 	}
 
 	static async checkFileExist(fileName, extname, object = null) {

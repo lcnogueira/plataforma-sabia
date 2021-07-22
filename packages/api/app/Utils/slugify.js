@@ -1,5 +1,6 @@
 const slugify = require('slugify');
 
+const Hash = use('Hash');
 const Database = use('Database');
 
 const incrementSlugSuffix = (oldSlug) => {
@@ -50,8 +51,19 @@ const createTermSlug = async (term, taxonomy_id) => {
 	return `${taxonomyPrefix}-${slug}`;
 };
 
+const makeSafeHash = async (plain) => {
+	let hashed = await Hash.make(plain);
+
+	if (hashed.includes('/')) {
+		hashed = await makeSafeHash(plain);
+	}
+
+	return hashed;
+};
+
 module.exports = {
 	createUniqueSlug,
 	incrementSlugSuffix,
 	createTermSlug,
+	makeSafeHash,
 };

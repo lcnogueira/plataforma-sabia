@@ -1,11 +1,20 @@
+/* eslint-disable no-underscore-dangle */
 const Helpers = use('Helpers');
 const Upload = use('App/Models/Upload');
-const fs = require('fs').promises;
+const Env = use('Env');
+
+const { createReadStream } = require('fs');
+const fs = require('fs/promises');
+
+const { makeSafeHash } = require('../../Utils/slugify');
 
 const { antl, errors, errorPayload, getTransaction } = require('../../Utils');
 
 const Config = use('Adonis/Src/Config');
 const { uploadsPath } = Config.get('upload');
+
+const Drive = use('Drive');
+const isTesting = Env.getOrFail('APP_ENV') === 'testing';
 
 class UploadController {
 	async index({ request }) {
@@ -16,7 +25,6 @@ class UploadController {
 
 		return Upload.query()
 			.where(query)
-
 			.withFilters(request)
 			.withParams(request);
 	}
@@ -26,54 +34,66 @@ class UploadController {
 		const files = request.file('files');
 		const objectInfo = meta ? JSON.parse(meta) : {};
 
-		const uploadPath = objectInfo.object
-			? `${uploadsPath}/${objectInfo.object}`
+		const folder = objectInfo.object
+			? `${uploadsPath}/${objectInfo.object}/${objectInfo.object_id}`
 			: `${uploadsPath}`;
-
-		const uploadedFiles = files.files;
 
 		let trx;
 		let uploads;
 		try {
 			const { init, commit } = getTransaction();
-			trx = await init();
-
-			await Promise.all(
-				uploadedFiles.map(async (file) => {
-					const filename = await Upload.getUniqueFileName(file, objectInfo.object);
-					await file.move(Helpers.publicPath(uploadPath), {
-						name: filename,
-					});
-				}),
-			);
-
-			if (!files.movedAll()) {
-				throw new Error('Moving files error');
-			}
-
 			const user = await auth.getUser();
 
+			trx = await init();
+
 			uploads = await Promise.all(
-				files.movedList().map((file) =>
-					user.uploads().create(
+				files.files.map(async (file) => {
+					const ext = file.clientName.split('.').pop();
+					const fileName = `${await makeSafeHash(file.clientName)}.${ext}`;
+
+					let url;
+					if (isTesting) {
+						file.move(Helpers.publicPath(folder), {
+							name: fileName,
+							overwrite: true,
+						});
+						url = `${Config.get('app.appURL')}/${folder}/${fileName}`;
+					} else {
+						const filePath = `${Helpers.tmpPath(folder)}/${fileName}`;
+						await file.move(Helpers.tmpPath(folder), {
+							name: fileName,
+							overwrite: true,
+						});
+
+						const fileStream = await createReadStream(filePath);
+
+						url = await Drive.put(`${folder}/${fileName}`, fileStream, {
+							ACL: 'public-read',
+							ContentType: `${file.type}/${file.subtype}`,
+						});
+						fileStream._destroy();
+						Drive.disk('local').delete(filePath);
+					}
+
+					return user.uploads().create(
 						{
-							filename: file.fileName,
+							filename: file.clientName,
 							object: objectInfo.object,
 							object_id: objectInfo.object_id,
+							url,
 						},
 						trx,
-					),
-				),
+					);
+				}),
 			);
 
 			await commit();
 		} catch (error) {
 			trx.rollback();
-			await Promise.all(
-				files
-					.movedList()
-					.map((file) => fs.unlink(Helpers.publicPath(`${uploadPath}/${file.fileName}`))),
-			);
+			if (uploads)
+				await Promise.all(
+					uploads.map((file) => Drive.delete(new URL(file.url).pathname.slice(1))),
+				);
 			return response
 				.status(400)
 				.send(
@@ -88,27 +108,31 @@ class UploadController {
 
 	async destroy({ params, response }) {
 		const upload = await Upload.findOrFail(params.id);
-		const uploadPath = upload.object ? `${uploadsPath}/${upload.object}` : `${uploadsPath}`;
 
-		const result = await upload.delete();
+		const file = decodeURIComponent(new URL(upload.url).pathname.slice(1));
 
-		if (result) {
-			const path = Helpers.publicPath(`${uploadPath}/${upload.filename}`);
-			await fs
-				.access(path)
-				.then(() => fs.unlink(path))
-				// eslint-disable-next-line no-console
-				.catch(() => console.error('File does not exist'));
+		if (!isTesting && (await Drive.exists(file))) {
+			try {
+				await Drive.delete(file);
+			} catch (error) {
+				return response
+					.status(400)
+					.send(
+						errorPayload(
+							errors.RESOURCE_DELETED_ERROR,
+							antl('error.resource.resourceDeletedError'),
+						),
+					);
+			}
 		} else {
-			return response
-				.status(400)
-				.send(
-					errorPayload(
-						errors.RESOURCE_DELETED_ERROR,
-						antl('error.resource.resourceDeletedError'),
-					),
-				);
+			await fs
+				.access(Helpers.publicPath(file))
+				.then(() => {
+					fs.unlink(Helpers.publicPath(file));
+				})
+				.catch(() => {});
 		}
+		await upload.delete();
 
 		return response.status(200).send({ success: true });
 	}
