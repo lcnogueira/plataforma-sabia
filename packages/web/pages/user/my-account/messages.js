@@ -146,33 +146,38 @@ const Messages = ({
 									{!!activeMessage && (
 										<>
 											<MessageHeader>
-												<span>
-													{formatDateLong(
-														activeMessage.created_at,
-														undefined,
-														{
-															hour: '2-digit',
-															minute: '2-digit',
-														},
-													)}
-												</span>
+												<div>
+													<span>
+														{formatDateLong(
+															activeMessage.created_at,
+															undefined,
+															{
+																hour: '2-digit',
+																minute: '2-digit',
+															},
+														)}
+													</span>
+													<RectangularButton
+														variant="outlined"
+														colorVariant="green"
+														onClick={() =>
+															handleToggleMessageRead(
+																activeMessage,
+																true,
+															)
+														}
+														disabled={isLoading}
+													>
+														Marcar como{' '}
+														{activeMessage.status === statusEnum.NEW
+															? 'lida'
+															: 'não lida'}
+													</RectangularButton>
+												</div>
 												<p>{activeMessage.subject}</p>
 											</MessageHeader>
 											<MessageText>
 												<SafeHtml html={activeMessage.content} />
-												<RectangularButton
-													variant="outlined"
-													colorVariant="green"
-													onClick={() =>
-														handleToggleMessageRead(activeMessage, true)
-													}
-													disabled={isLoading}
-												>
-													Marcar como{' '}
-													{activeMessage.status === statusEnum.NEW
-														? 'lida'
-														: 'não lida'}
-												</RectangularButton>
 											</MessageText>
 										</>
 									)}
@@ -321,6 +326,8 @@ const MessageListItem = styled.li`
 const MessageContent = styled.div`
 	flex: 1;
 	min-width: min(30rem, 100%);
+	overflow-y: auto;
+	height: 58rem;
 `;
 
 const MessageText = styled.div`
@@ -339,17 +346,25 @@ const MessageText = styled.div`
 
 const MessageHeader = styled.div`
 	${({ theme: { colors } }) => css`
-		> span {
+		> div > span {
 			color: ${colors.lightGray2};
-			font-size: 1.2rem;
+			font-size: 1.4rem;
 			line-height: 1.6rem;
 			margin-bottom: 0.8rem;
+			padding-top: 1rem;
 		}
 
 		> p {
 			color: ${colors.silver};
 			font-size: 2.4rem;
 			line-height: 2.8rem;
+		}
+
+		> div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1rem;
 		}
 
 		padding-bottom: 1.6rem;
